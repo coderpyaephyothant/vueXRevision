@@ -6,6 +6,7 @@
             {{product.name}} = {{product.price}}
         </div>
     </div>
+    <button @click="redyceProductPrice">ReduceProductPrices</button>
   </div>
 </template>
 
@@ -17,6 +18,11 @@ export default {
         },
         promotionProducts(){
             return this.$store.getters.promotionProducts
+        }
+    },
+    methods:{
+        redyceProductPrice:function(){
+            this.$store.commit('reducePrice')
         }
     }
 }

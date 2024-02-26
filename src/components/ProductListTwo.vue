@@ -11,19 +11,27 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+import {mapGetters} from 'vuex';
 export default {
 computed:{
-        devices(){
-            return this.$store.state.devices
-        },
-        promotionDevices(){
-            return this.$store.getters.promotionDevices
-        }
+    ...mapGetters([
+        'devices','promotionDevices'
+
+    ]),
+        // devices(){
+        //     return this.$store.state.devices
+        // },
+        // promotionDevices(){
+        //     return this.$store.getters.promotionDevices
+        // }
     },
 methods:{
+    ...mapActions([
+        'reduceDevicesPrice'
+    ]),
         reduceDevicePrice(amount){
-            // this.$store.commit('reduceDevicePrices')
-            this.$store.dispatch('reduceDevicesPrice',amount)
+            this.reduceDevicesPrice(amount)
         }
 }
 

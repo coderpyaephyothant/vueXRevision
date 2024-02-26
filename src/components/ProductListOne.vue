@@ -2,11 +2,11 @@
   <div>
     <h3>Product List One</h3>
     <div v-if="products">
-        <div v-for="product in promotionProducts" :key="product.id">
+        <div v-for="product in products" :key="product.id">
             {{product.name}} = {{product.price}}
         </div>
     </div>
-    <button @click="redyceProductPrice">ReduceProductPrices</button>
+    <button @click="reduceProductPrice(10)">ReduceProductPrices</button>
   </div>
 </template>
 
@@ -17,12 +17,14 @@ export default {
             return this.$store.state.products
         },
         promotionProducts(){
+            console.log('promotionProducts')
             return this.$store.getters.promotionProducts
         }
     },
+    // call actions by dispatch
     methods:{
-        redyceProductPrice:function(){
-            this.$store.commit('reducePrice')
+        reduceProductPrice:function(amount){
+            this.$store.dispatch('reduceThePrice',amount)
         }
     }
 }
